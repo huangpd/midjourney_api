@@ -122,9 +122,16 @@ http://127.0.0.1:8000/midjourney/job?id=2e1146bdd64a4f7413bd
 }
 ```
 
-2. midjourney/action
-此端点用于将图像升级。它接受一个image ID、action ID、token ID和client ID参数。如果令牌计数为0，它将返回一个错误消息。否则，它在指定的图像上运行操作并返回作业数据。
+3. midjourney/action
+此端点用于将图像升级。它接受一个image ID、action ID、token ID和client ID参数，它在指定的图像上运行操作并返回作业数据。并在midjourney/job接口中获得对应接口
 
+```
+midjourney/job返回的json参数
+image: images->id, action: actions->id , token: token , client_id :client_id
+
+https://ai-api.com.cn/midjourney/action?image=1110056538573389844&action=MJ::JOB::upsample::1::03aa7a73-cfd8-4231-86fe-adc7be88c983&token=4mflr&client_id=1103654914795765792
+
+```
 
 3. midjourney/desc
 该端点用于提交describe指令。它接受一个图像文件的文件路径，并基于该图像生成作业。返回作业数据。
@@ -142,7 +149,7 @@ http://127.0.0.1:8000/midjourney/job?id=2e1146bdd64a4f7413bd
 该端点用于检索给定作业的进度。它接受一个job ID参数并返回进度数据。
 
 8. midjourney/switch
-该端点用于在不同模式之间切换并检索有关当前模式的信息。它接受类型和客户端ID参数，向机器人发送斜线命令以切换模式或检索信息，并返回结果数据。
+该端点用于在不同模式之间切换并检索有关当前模式的信息。它接受类型和客户端ID参数，向机器人发送斜线命令以切换模式或检索信息，并返回结果数据。支持/fast /info /relax 命令
 
 9. midjourney/get_devices
 该端点用于检索可用于渲染作业的设备。
