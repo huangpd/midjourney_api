@@ -1,6 +1,18 @@
 # midjourney_api
 这是个关于midjourney非官方的api接口
 
+## todolist
+
+- [x] 支持/imagine，支持对不同用户频道设置不同模式（快速、慢模式）
+- [x] 支持对大图升级、重置（V、U）命令
+- [x] 支持/describe指令图生文
+- [x] 支持多midjoury多账号登录，支持加入代理、账号负载均衡
+- [x] 支持获取频道队列状态，如Job queued 、Queue full、 Invalid link（作业排队，队列已满，链接无效）等各种状态
+- [x] 支持作图进度条，实时展示最新生图状态
+- [x] 最新支持模式切换 /fast /relax 模式自由切换 支持/ info
+- [x] 支持获取用户作图历史记录
+- [x] 支持多midjoury 账号动态调度
+- [] 图片支持cdn
 ##  Install
 
 
