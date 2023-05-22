@@ -125,7 +125,7 @@ http://127.0.0.1:8000/midjourney/job?id=2e1146bdd64a4f7413bd
 3. midjourney/action
 此端点用于将图像升级。它接受一个image ID、action ID、token ID和client ID参数，它在指定的图像上运行操作并返回作业数据。并在midjourney/job接口中获得对应接口
 
-```
+```json
 midjourney/job返回的json参数
 image: images->id, action: actions->id , token: token , client_id :client_id
 
