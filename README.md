@@ -41,9 +41,9 @@ token是discord中的验证authorized, channel为你的频道id, proxy为代理,
 ## API
 
 1. midjourney/imagine 提交指令
-该端点用于提交imagine指令。它接受prompt和upscale参数，以及token ID和pattern。如果token计数为0，则返回错误消息。否则，使用给定参数创建作业并返回作业数据。
+该端点用于提交imagine指令。它接受prompt以及token ,使用给定参数创建作业并返回作业数据。
 
-```
+```json
 http://127.0.0.1:8000/midjourney/imagine?token=4mflr&prompt=a dog
 
 {
@@ -59,11 +59,72 @@ http://127.0.0.1:8000/midjourney/imagine?token=4mflr&prompt=a dog
 
 ```
 
+2. midjourney/job
+该端点用于检索imagine或action命令的结果。它接受一个job ID参数并返回作业数据，其中重复的图像已去除。
+``` json
+http://127.0.0.1:8000/midjourney/job?id=2e1146bdd64a4f7413bd
+
+{
+  "prompt": "a dog",
+  "upscale": false,
+  "client_id": "1103654914795765792",
+  "id": "2e1146bdd64a4f7413bd",
+  "tasks": 1,
+  "images": [
+    {
+      "id": "1110056538573389844",
+      "url": "https://cdn.discordapp.com/attachments/1103654914795765792/1110056538078449734/gvance_a_dog_id2e1146bdd64a4f7413bd_03aa7a73-cfd8-4231-86fe-adc7be88c983.png",
+      "upscaled": false,
+      "actions": [
+        [
+          {
+            "label": "U1",
+            "id": "MJ::JOB::upsample::1::03aa7a73-cfd8-4231-86fe-adc7be88c983"
+          },
+          {
+            "label": "U2",
+            "id": "MJ::JOB::upsample::2::03aa7a73-cfd8-4231-86fe-adc7be88c983"
+          },
+          {
+            "label": "U3",
+            "id": "MJ::JOB::upsample::3::03aa7a73-cfd8-4231-86fe-adc7be88c983"
+          },
+          {
+            "label": "U4",
+            "id": "MJ::JOB::upsample::4::03aa7a73-cfd8-4231-86fe-adc7be88c983"
+          },
+          {
+            "label": "🔄",
+            "id": "MJ::JOB::reroll::0::03aa7a73-cfd8-4231-86fe-adc7be88c983::SOLO"
+          }
+        ],
+        [
+          {
+            "label": "V1",
+            "id": "MJ::JOB::variation::1::03aa7a73-cfd8-4231-86fe-adc7be88c983"
+          },
+          {
+            "label": "V2",
+            "id": "MJ::JOB::variation::2::03aa7a73-cfd8-4231-86fe-adc7be88c983"
+          },
+          {
+            "label": "V3",
+            "id": "MJ::JOB::variation::3::03aa7a73-cfd8-4231-86fe-adc7be88c983"
+          },
+          {
+            "label": "V4",
+            "id": "MJ::JOB::variation::4::03aa7a73-cfd8-4231-86fe-adc7be88c983"
+          }
+        ]
+      ]
+    }
+  ]
+}
+```
+
 2. midjourney/action
 此端点用于将图像升级。它接受一个image ID、action ID、token ID和client ID参数。如果令牌计数为0，它将返回一个错误消息。否则，它在指定的图像上运行操作并返回作业数据。
 
-2. midjourney/job
-该端点用于检索imagine或action命令的结果。它接受一个job ID参数并返回作业数据，其中重复的图像已去除。
 
 3. midjourney/desc
 该端点用于提交describe指令。它接受一个图像文件的文件路径，并基于该图像生成作业。返回作业数据。
