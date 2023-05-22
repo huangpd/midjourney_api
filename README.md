@@ -11,13 +11,11 @@ git clone https://github.com/erictik/midjourney-api.git
 ```
 
 ```
-
 cd midjourney-api 
 
 ```
 
 ```
-
 npm install 
 
 ```
