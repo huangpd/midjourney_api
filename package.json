@@ -1,0 +1,42 @@
+{
+  "name": "midjourney",
+  "version": "1.0.0",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "axios": "^0.21.0",
+    "bad-words": "^3.0.4",
+    "base64-stream": "^1.0.0",
+    "body-parser": "^1.20.1",
+    "concat-stream": "^2.0.0",
+    "cookie-parser": "^1.4.6",
+    "cookie-session": "^2.0.0",
+    "cors": "^2.8.5",
+    "crypto-js": "^4.1.1",
+    "discord.js-selfbot-rpc": "^1.0.1",
+    "discord.js-selfbot-v13": "^2.14.0",
+    "ejs": "^3.1.9",
+    "express": "^4.18.2",
+    "express-session": "^1.17.3",
+    "form-data": "^4.0.0",
+    "generic-pool": "^3.9.0",
+    "gpt-3-encoder": "^1.1.4",
+    "imgbb-uploader": "^1.5.1",
+    "index.js": "^0.0.3",
+    "ky": "^0.33.3",
+    "ky-universal": "^0.11.0",
+    "node-telegram-bot-api": "^0.51.0",
+    "proxy-agent": "^5.0.0",
+    "qiniu": "^7.8.0",
+    "qs": "^6.11.1",
+    "redis": "^4.6.5",
+    "request": "^2.88.2",
+    "request-ip": "^3.3.0",
+    "sqlite": "^4.2.0",
+    "sqlite3": "^5.1.6",
+    "swagger-ui-express": "^4.6.1",
+    "ws": "^8.12.1",
+    "yamljs": "^0.3.0"
+  }
+}

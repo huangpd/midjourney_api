@@ -1,0 +1,6 @@
+[
+  {"token":"MTEwMTgwODU0Nzg1NzE3NDU1OA.","channel":"1106130756494962778",
+    "proxy": "http://127.0.0.1:7890","pattern_type": "fast"},
+  {"token":"MTEwMTgwODU0Nzg1NzE3NDU1OA","channel":"1106130754792083477",
+    "proxy": "http://127.0.0.1:7890","pattern_type": "relax"}
+]
