@@ -1,7 +1,7 @@
 # midjourney_api
 这是个关于midjourney非官方的api接口
 
-## todolist
+## Supported features
 
 - [x] 支持/imagine，支持对不同用户频道设置不同模式（快速、慢模式）
 - [x] 支持对大图升级、重置（V、U）命令
@@ -12,7 +12,7 @@
 - [x] 最新支持模式切换 /fast /relax 模式自由切换 支持/ info
 - [x] 支持获取用户作图历史记录
 - [x] 支持多midjoury 账号动态调度
-- [] 图片支持cdn
+- [ ] 图片支持cdn
 ##  Install
 
 
