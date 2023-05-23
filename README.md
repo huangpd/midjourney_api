@@ -30,7 +30,6 @@ cd midjourney-api
 ```
 npm install 
 
-npm start
 
 ```
 
