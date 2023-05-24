@@ -18,7 +18,7 @@
 
 ```
 
-git clone https://github.com/erictik/midjourney-api.git
+git clone https://github.com/huangpd/midjourney_api.git
 
 ```
 
