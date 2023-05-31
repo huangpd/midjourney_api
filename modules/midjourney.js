@@ -1,7 +1,7 @@
 const fs = require('fs')
 const redis = require('./redis.js')
 const sqlite = require('./sqlite.js')
-const {get_now_date} = require('./untils.js')
+const {get_now_date,addDaysToDate} = require('./untils.js')
 const crypto = require('crypto')
 const {Client, MessageAttachment} = require('discord.js-selfbot-v13')
 const path = require('path');
@@ -9,7 +9,6 @@ const url = require('url');
 const {use} = require("express/lib/router");
 const midjourneyBotId = '936929561302675456'
 const listeners = []
-
 
 let jobs
 let queue
@@ -692,8 +691,46 @@ module.exports = async (app) => {
     // 生成校验token
     app.get('/midjourney/create_token', async (req, res) => {
         let count = parseInt(req.query['count'])
-        let expiry = parseInt(req.query['expiry'])
-        return res.send(token)
+        let day = parseInt(req.query['day'])
+
+        function generateRandomString(length) {
+            var result = '';
+            var characters = 'abcdefghijklmnopqrstuvwxyz0123456789';
+            for (var i = 0; i < length; i++) {
+                result += characters.charAt(Math.floor(Math.random() * characters.length));
+            }
+            return result;
+        }
+
+        async function start(count, day, type) {
+            const id = generateRandomString(5)
+            const create_time = get_now_date()
+            const expiration_time = addDaysToDate(day)
+            return {token: id, count, day, create_time, type, expiration_time}
+        }
+
+        const a = await start(count, day, 'null')
+        const tokenData = {
+            token: a.token,
+            token_type: a.type,
+            token_day: a.day,
+            token_count: a.count,
+            create_time: a.create_time,
+            user: 'admin',
+            expiration_time: a.expiration_time,
+            user_type: 1
+        };
+        console.log(tokenData)
+        try {
+            const data = await sqlite.insert('users_token', tokenData)
+            console.log(data)
+
+            return res.send({token:a.token})
+        }catch (e) {
+            console.log(e)
+            return res.send({e})
+        }
+
     })
 
     // 获取所有token有效期

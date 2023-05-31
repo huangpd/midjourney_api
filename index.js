@@ -13,14 +13,6 @@ app.use(bodyParser.json({limit: '10mb'}))
 app.use(cors({origin: '*'}))
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
-// 设置 EJS 模板引擎
-app.set('view engine', 'ejs');
-app.set('views', path.join(__dirname, '.','views'));
-// 路由配置
-const loginRoutes = require('./modules/login')
-
-
-app.use('/', loginRoutes);
 
 
 axios.interceptors.request.use(request => {
