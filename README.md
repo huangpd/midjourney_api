@@ -12,7 +12,7 @@
 - [x] 最新支持模式切换 /fast /relax 模式自由切换 支持/ info
 - [x] 支持获取用户作图历史记录
 - [x] 支持多midjoury 账号动态调度
-- [ ] 图片支持cdn
+- [x] 图片支持cdn
 ##  Install
 
 
