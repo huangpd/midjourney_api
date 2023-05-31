@@ -440,7 +440,12 @@ async function startClient(token_id, channel_id, proxy, pattern_type) {
                         sessions_redis.hset('channel_id_' + channel_id, "status", "full");
                         sessions_redis.hset('channel_id_' + channel_id, "time", getCurrentTimestamp().toString());
                     }
-                    job = await findJob(msg.embeds[0].footer.text)
+                    try {
+                        job = await findJob(msg.embeds[0].footer.text)
+                    }catch (e) {
+                        return
+                    }
+
                     if (job) {
                         job.images.push({
                             id: msg.id,
