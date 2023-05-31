@@ -52,7 +52,7 @@ token是discord中的验证authorized, channel为你的频道id, proxy为代理,
 ## API
 
 1. midjourney/imagine 提交指令
-该端点用于提交imagine指令。它接受prompt以及token ,使用给定参数创建作业并返回作业数据。
+该端点用于提交imagine指令。它接受prompt以及token ,使用给定参数创建作业并返回作业数据。token参数请调用midjourney/create_token接口生成
 
 ```json
 http://127.0.0.1:8000/midjourney/imagine?token=4mflr&prompt=a dog
