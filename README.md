@@ -40,7 +40,9 @@ npm install
     ```json
     [
       {"token":"MTEwMTgwODU0Nzg1NzE3NDU1OA.GQu5KQ","channel":"1106130756494962778",
-        "proxy": "http://127.0.0.1:7890","pattern_type": "fast"}
+        "proxy": "http://127.0.0.1:7890","pattern_type": "fast"},
+      {"token":"MTEwMTgwODU0Nzg1NzE3NDU1OA.GQu5KQ","channel":"1306980756494962709",
+        "proxy": "http://127.0.0.1:7890","pattern_type": "relax"}
     ]
 
     ```
