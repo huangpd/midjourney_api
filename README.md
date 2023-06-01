@@ -44,7 +44,7 @@ npm install
     ]
 
     ```
-    token是discord中的验证authorized, channel为你的频道id, proxy为代理, pattern_type是midjoury fast or relax模式
+    token是discord中的验证authorized, channel为你的频道id（不可重复）, proxy为代理, pattern_type是midjoury fast or relax模式
 
 2. modules/redis.js 配置下你的reids数据库
 
