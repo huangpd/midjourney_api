@@ -35,22 +35,19 @@ npm install
 
 ##  Usage
 
-修改modules/token_channels.json文件
+1. 修改modules/token_channels.json文件
 
-```json
-[
-  {"token":"MTEwMTgwODU0Nzg1NzE3NDU1OA.GQu5KQ","channel":"1106130756494962778",
-    "proxy": "http://127.0.0.1:7890","pattern_type": "fast"},
-  {"token":"MTEwMTgwODU0Nzg1NzE3NDU1OA.GQu5KQ","channel":"1106130754792083477",
-    "proxy": "http://127.0.0.1:7890","pattern_type": "relax"}
-]
+  ```json
+  [
+    {"token":"MTEwMTgwODU0Nzg1NzE3NDU1OA.GQu5KQ","channel":"1106130756494962778",
+      "proxy": "http://127.0.0.1:7890","pattern_type": "fast"}
+  ]
 
-```
+  ```
+  token是discord中的验证authorized, channel为你的频道id, proxy为代理, pattern_type是midjoury fast or relax模式
 
-modules/redis.js 配置下你的reids数据库
+2. modules/redis.js 配置下你的reids数据库
 
-
-token是discord中的验证authorized, channel为你的频道id, proxy为代理, pattern_type是midjoury fast or relax模式
 
 ## API
 
