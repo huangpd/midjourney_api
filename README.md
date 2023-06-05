@@ -172,6 +172,8 @@ http://127.0.0.1:8000/midjourney/action?image=1110056538573389844&action=MJ::JOB
 10. midjourney/get_queue
 该端点用于检索队列中的任务数。返回队列大小。
 
+## 商务合作
+https://t.me/hpd001
 
 ## 支持作者（随缘）
 支付宝
