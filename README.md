@@ -35,19 +35,21 @@ npm install
 
 ##  Usage
 
-cd modules 修改token_channels.json文件
+1. 修改modules/token_channels.json文件
 
-```json
-[
-  {"token":"MTEwMTgwODU0Nzg1NzE3NDU1OA.GQu5KQ","channel":"1106130756494962778",
-    "proxy": "http://127.0.0.1:7890","pattern_type": "fast"},
-  {"token":"MTEwMTgwODU0Nzg1NzE3NDU1OA.GQu5KQ","channel":"1106130754792083477",
-    "proxy": "http://127.0.0.1:7890","pattern_type": "relax"}
-]
+    ```json
+    [
+      {"token":"MTEwMTgwODU0Nzg1NzE3NDU1OA.GQu5KQ","channel":"1106130756494962778",
+        "proxy": "http://127.0.0.1:7890","pattern_type": "fast"},
+      {"token":"MTEwMTgwODU0Nzg1NzE3NDU1OA.GQu5KQ","channel":"1306980756494962709",
+        "proxy": "http://127.0.0.1:7890","pattern_type": "relax"}
+    ]
 
-```
+    ```
+    **token是discord中的验证authorized, channel为你的频道id（不可重复）, proxy为代理, pattern_type是 fast or relax模式（最少配置两个方便测试fast和relax**
 
-token是discord中的验证authorized, channel为你的频道id, proxy为代理, pattern_type是midjoury fast or relax模式
+2. modules/redis.js 配置下你的reids数据库
+
 
 ## API
 
@@ -170,6 +172,8 @@ http://127.0.0.1:8000/midjourney/action?image=1110056538573389844&action=MJ::JOB
 10. midjourney/get_queue
 该端点用于检索队列中的任务数。返回队列大小。
 
+## 商务合作
+https://t.me/hpd001
 
 ## 支持作者（随缘）
 支付宝
