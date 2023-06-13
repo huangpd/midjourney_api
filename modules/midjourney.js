@@ -654,6 +654,7 @@ module.exports = async (app) => {
     // 创建 multer 实例
     const upload = multer({storage: storage});
 
+
     // 提交describe指令
     app.post('/midjourney/describe', upload.single('image'), async (req, res) => {
         const randomIndex = Math.floor(Math.random() * sessions.length);
