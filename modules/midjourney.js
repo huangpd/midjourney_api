@@ -1,11 +1,12 @@
 const fs = require('fs')
 const redis = require('./redis.js')
 const sqlite = require('./sqlite.js')
-const {get_now_date,addDaysToDate} = require('./untils.js')
+const {get_now_date, addDaysToDate} = require('./untils.js')
 const crypto = require('crypto')
 const {Client, MessageAttachment} = require('discord.js-selfbot-v13')
 const path = require('path');
 const url = require('url');
+const multer = require('multer');
 const {use} = require("express/lib/router");
 const midjourneyBotId = '936929561302675456'
 const listeners = []
@@ -442,7 +443,7 @@ async function startClient(token_id, channel_id, proxy, pattern_type) {
                     }
                     try {
                         job = await findJob(msg.embeds[0].footer.text)
-                    }catch (e) {
+                    } catch (e) {
                         return
                     }
 
@@ -463,21 +464,10 @@ async function startClient(token_id, channel_id, proxy, pattern_type) {
             if (job && attachement) {
                 console.log(`[Midjourney] done ${job.id} ${attachement.url}`)
                 let image_url
-                // try {
-                //     const imagePath = await downloadImage(attachement.url)
-                //     console.log(imagePath)
-                //     const imgbb = await imgbbUploader("6b90c6ff20fe58fca996a8d50e3a4107", imagePath)
-                //     // const imgbb = await qinIuUploadFile(image_id, image_id)
-                //     image_url = imgbb.url
-                //     if (fs.existsSync(imagePath)) {
-                //         fs.rmSync(imagePath, {recursive: true});
-                //     }
-                // } catch (e) {
-                //     image_url = attachement.url
-                // }
+                image_url = "https://images.ai-api.com.cn/?url=" + attachement.url
                 job.images.push({
                     id: msg.id,
-                    url: attachement.url,
+                    url: image_url,
                     upscaled: msg.content.indexOf(' - Upscaled ') !== -1,
                     actions: msg.components.map(row => {
                         return row.components.filter(btn => btn.customId && btn.customId.indexOf('::RATING::') === -1).map(btn => {
@@ -486,7 +476,7 @@ async function startClient(token_id, channel_id, proxy, pattern_type) {
                     }).filter(row => row.length > 0)
                 })
                 try {
-                    await sqlite.insert('job_images', {job_id: job.id, images_url: attachement.url})
+                    await sqlite.insert('job_images', {job_id: job.id, images_url: image_url})
                 } catch (e) {
                     console.log(e)
                 }
@@ -557,7 +547,7 @@ module.exports = async (app) => {
                         token: token_id, job_id: job.id, prompt: prompt,
                         pattern: pattern, channel_id: client_id, tasks: job.tasks, creat_time: get_now_date()
                     })
-                }catch (e) {
+                } catch (e) {
                     console.log(e)
                 }
                 await updateTokenCount(token_id, 'token_count', '-', 1)
@@ -650,20 +640,34 @@ module.exports = async (app) => {
         }
     })
 
+    const storage = multer.diskStorage({
+        destination: function (req, file, cb) {
+            cb(null, 'uploads/');
+        },
+        filename: function (req, file, cb) {
+            const timestamp = new Date().getTime();
+            const extname = path.extname(file.originalname);
+            cb(null, timestamp + extname);
+        }
+    });
+
+    // 创建 multer 实例
+    const upload = multer({storage: storage});
+
     // 提交describe指令
-    app.get('/midjourney/desc', async (req, res) => {
+    app.post('/midjourney/describe', upload.single('image'), async (req, res) => {
         const randomIndex = Math.floor(Math.random() * sessions.length);
         const client_id = sessions[randomIndex].client_id;
-        let imagePath = req.query['filePath']
-        let imageName = path.basename(imagePath);
-        let regex = /^[0-9a-z.]+$/;
-        if (!regex.test(imageName)) {
-            return res.status(400).send('无效的文件名,只允许使用数字文件名!!!');
+
+        const filePath = req.file.path;
+        if (!filePath) {
+            return res.status(400).send('无效的文件!!!');
         }
         const job = await rundescJob({
-            imagePath: imagePath,
-            imageName: imageName,
-            id: imageName.split('.')[0],
+            // imagePath: path.resolve('uploads') + '\\' + path.basename(filePath),// windows
+            imagePath: path.resolve('uploads') + '/' + path.basename(filePath), // liunx
+            imageName: path.basename(filePath),
+            id: path.basename(filePath).split('.')[0],
             client_id: client_id
         })
         if (job) {
@@ -675,6 +679,7 @@ module.exports = async (app) => {
             }))
         }
     })
+
 
     // 获取describe指令的结果
     app.get('/midjourney/descjob', async (req, res) => {
@@ -730,8 +735,8 @@ module.exports = async (app) => {
             const data = await sqlite.insert('users_token', tokenData)
             console.log(data)
 
-            return res.send({token:a.token})
-        }catch (e) {
+            return res.send({token: a.token})
+        } catch (e) {
             console.log(e)
             return res.send({e})
         }

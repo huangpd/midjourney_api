@@ -1,7 +1,8 @@
 const redis = require('redis')
 const redisClient = new Promise(async (resolve, reject) => {
     const client = redis.createClient({
-        url: process.env.REDIS_URL || 'redis://:WlloPwMC90834323jkie@43.142.54.128:6379/1',
+        // url: process.env.REDIS_URL || 'redis://:WlloPwMC90834323jkie@43.142.54.128:6379/1',
+        url: process.env.REDIS_URL || 'redis://:1@154.22.117.20:6379/1',
     })
 
     client.on('connect', () => {
