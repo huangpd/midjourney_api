@@ -148,28 +148,38 @@ http://127.0.0.1:8000/midjourney/action?image=1110056538573389844&action=MJ::JOB
 
 ```
 
-3. midjourney/desc
+4. midjourney/describe
 该端点用于提交describe指令。它接受一个图像文件的文件路径，并基于该图像生成作业。返回作业数据。
+```
+import requests
 
-4. midjourney/descjob
+url = 'http://127.0.0.1:8000/midjourney/describe'
+files = {'image': open(r'C:\Users\Administrator\Desktop\_20230509112131.jpg', 'rb')}
+
+print(requests.post(url, files=files).text)
+
+```
+
+
+5. midjourney/descjob
 该端点用于检索describe命令的结果。它接受一个job ID参数并返回作业数据，其中重复的描述已删除。
 
-5. midjourney/create_token
+6. midjourney/create_token
 该端点用于生成新的身份验证令牌。它接受计数和天数参数，以确定使用次数和到期天数。它生成一个随机的令牌ID，在数据库中创建一个新条目，并返回令牌数据。
 
-6. midjourney/history
+7. midjourney/history
 该端点用于检索与给定令牌相关的历史作业。它接受一个token参数并返回作业ID和图像URL的列表。
 
-7. midjourney/progress
+8. midjourney/progress
 该端点用于检索给定作业的进度。它接受一个job ID参数并返回进度数据。
 
-8. midjourney/switch
+9. midjourney/switch
 该端点用于在不同模式之间切换并检索有关当前模式的信息。它接受类型和客户端ID参数，向机器人发送斜线命令以切换模式或检索信息，并返回结果数据。支持/fast /info /relax 命令
 
-9. midjourney/get_devices
+10. midjourney/get_devices
 该端点用于检索可用于渲染作业的设备。
 
-10. midjourney/get_queue
+11. midjourney/get_queue
 该端点用于检索队列中的任务数。返回队列大小。
 
 ## 商务合作
