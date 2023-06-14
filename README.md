@@ -182,6 +182,9 @@ print(requests.post(url, files=files).text)
 11. midjourney/get_queue
 该端点用于检索队列中的任务数。返回队列大小。
 
+## 打赏鸣谢
+![image](https://github.com/huangpd/midjourney_api/assets/29889615/34b72130-be18-4650-b4b4-1ce779146982)
+
 ## 商务合作
 https://t.me/hpd001
 
